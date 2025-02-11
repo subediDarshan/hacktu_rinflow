@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
@@ -17,7 +16,10 @@ const LoanApplication = () => {
     console.log(data);
 
     try {
-      await axios.post(`${import.meta.env.BACKEND_EXPRESS_BASE_API}/api/v1/register`, data);
+      await axios.post(
+        `${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/register`,
+        data
+      );
       setMessage("Application submitted successfully!");
       reset();
       nav("/login");
@@ -35,11 +37,16 @@ const LoanApplication = () => {
         <div className="max-w-lg mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-slate-900">
-              Join <span className="bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">rinflow</span>
+              Join{" "}
+              <span className="bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
+                rinflow
+              </span>
             </h2>
-            <p className="mt-2 text-slate-600">Create your account to get started</p>
+            <p className="mt-2 text-slate-600">
+              Create your account to get started
+            </p>
           </div>
-          
+
           <div className="bg-white/80 backdrop-blur-md shadow-sm rounded-xl p-8">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div>
@@ -108,11 +115,11 @@ const LoanApplication = () => {
             </form>
 
             {message && (
-              <div className={`mt-4 text-center text-sm ${
-                message.includes("Error") 
-                  ? "text-pink-600" 
-                  : "text-green-600"
-              }`}>
+              <div
+                className={`mt-4 text-center text-sm ${
+                  message.includes("Error") ? "text-pink-600" : "text-green-600"
+                }`}
+              >
                 {message}
               </div>
             )}

@@ -20,7 +20,7 @@ function Loan() {
       
       try {
         const response = await fetch(
-          `${import.meta.env.BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/${id}`,
+          `${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/${id}`,
           {
             method: "GET",
             credentials: "include",
@@ -29,7 +29,7 @@ function Loan() {
         const data = await response.json();
         console.log(data);
 
-        const ml = await fetch(`${import.meta.env.BACKEND_FLASK_BASE_API}/predict`, {
+        const ml = await fetch(`${import.meta.env.VITE_BACKEND_FLASK_BASE_API}/predict`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -65,7 +65,7 @@ function Loan() {
 
   const handleAccept = async () => {
     if (!id) return;
-    await fetch(`${import.meta.env.BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/accept/${id}`, {
+    await fetch(`${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/accept/${id}`, {
       method: "POST",
       credentials: "include",
     });
@@ -74,7 +74,7 @@ function Loan() {
 
   const handleReject = async () => {
     if (!id) return;
-    await fetch(`${import.meta.env.BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/reject/${id}`, {
+    await fetch(`${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/reject/${id}`, {
       method: "POST",
       credentials: "include",
     });

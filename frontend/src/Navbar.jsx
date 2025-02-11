@@ -11,7 +11,7 @@ function Navbar({ login, logout, signup, dashboard }) {
   };
   const handleLogout = async () => {
     await axios.post(
-      `${import.meta.env.BACKEND_EXPRESS_BASE_API}/api/v1/logout`,
+      `${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/logout`,
       {},
       {
         withCredentials: true,

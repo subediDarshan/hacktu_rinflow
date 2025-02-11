@@ -12,9 +12,11 @@ const Dashboard = () => {
   const nav = useNavigate();
 
   useEffect(() => {
+    
+    
     async function fetchUserData() {
       try {
-        const response = await fetch(`${import.meta.env.BACKEND_EXPRESS_BASE_API}/api/v1/getUser`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/getUser`, {
           credentials: "include",
         });
         const data = await response.json();
@@ -33,7 +35,7 @@ const Dashboard = () => {
       async function fetchLoanData() {
         try {
           const response = await fetch(
-            `${import.meta.env.BACKEND_EXPRESS_BASE_API}/api/v1/applicant/loans`,
+            `${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/applicant/loans`,
             {
               credentials: "include",
             }
@@ -49,7 +51,7 @@ const Dashboard = () => {
       async function fetchAllLoans() {
         try {
           const response = await fetch(
-            `${import.meta.env.BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/getAllLoans`,
+            `${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/getAllLoans`,
             {
               credentials: "include",
             }

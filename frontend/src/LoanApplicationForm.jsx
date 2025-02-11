@@ -62,7 +62,7 @@ const LoanApplication = () => {
     setMessage("");
     
     try {
-      await axios.post(`${import.meta.env.BACKEND_EXPRESS_BASE_API}/api/v1/applicant/apply`, data, {
+      await axios.post(`${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/applicant/apply`, data, {
         withCredentials: true,
       });
 

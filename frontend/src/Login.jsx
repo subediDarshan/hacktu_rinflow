@@ -17,7 +17,7 @@ const Login = () => {
     console.log(data);
 
     try {
-      await axios.post(`${import.meta.env.BACKEND_EXPRESS_BASE_API}/api/v1/login`, data, {
+      await axios.post(`${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/login`, data, {
         withCredentials: true,
       });
       setMessage("Logged in");

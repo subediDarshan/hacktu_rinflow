@@ -36,15 +36,11 @@ const getLoanById = async (req, res) => {
     }
 
     const loan = await LoanApplication.findById(req.params.loanId);
-    
-    
 
     if (!loan) {
       throw new ApiError(404, "Loan not found");
     }
 
-
-  
     const applicationData = {
       dependents: loan.number_of_dependents,
       education: loan.education,
@@ -61,8 +57,8 @@ const getLoanById = async (req, res) => {
     };
 
     const aiResponse = await flow.analyzeRisk({ applicationData });
-    console.log({loan, aiResponse});
-    
+    console.log({ loan, aiResponse });
+
     res.status(200).json({ loan, aiResponse });
   } catch (error) {
     console.error("Error fetching loan details:", error);
@@ -142,7 +138,7 @@ const acceptLoan = asyncHandler(async (req, res, next) => {
     loan.loan_status = "Approved";
     await loan.save();
 
-    const applicant = await Applicant.findById(loan.Applicant_Id)
+    const applicant = await Applicant.findById(loan.Applicant_Id);
 
     await flow.sendContract({
       loanId: loan._id,

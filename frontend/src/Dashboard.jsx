@@ -17,6 +17,7 @@ const Dashboard = () => {
     async function fetchUserData() {
       try {
         const response = await fetch(`${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/getUser`, {
+          method: "GET",
           credentials: "include",
         });
         const data = await response.json();

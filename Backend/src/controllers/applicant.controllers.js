@@ -24,7 +24,6 @@ const getAllPreviousLoans = async (req, res) => {
 
 
 const applyLoan = async (req, res, next) => {
-  console.log("applying loan");
 
   try {
     const applicantId = req.user._id;
@@ -45,22 +44,7 @@ const applyLoan = async (req, res, next) => {
       debt,
     } = req.body;
 
-    console.log(req.body);
     
-    console.log({
-      dependents,
-      education,
-      selfEmployed,
-      incomeAnnum,
-      loanAmount,
-      loanTerm,
-      cibilScore,
-      resedentialAssetValue,
-      commercialAssetValue,
-      luxuryAssetValue,
-      bankAssetValue,
-      debt,
-    });
     
 
     if (

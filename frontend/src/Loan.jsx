@@ -1,8 +1,8 @@
-
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import { ToastContainer, toast } from 'react-toastify';
 
 function Loan() {
   const { id } = useParams();
@@ -13,6 +13,8 @@ function Loan() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [mlResponse, setMlResponse] = useState(null);
+  const [isAccepting, setIsAccepting] = useState(false);
+  const [isRejecting, setIsRejecting] = useState(false);
 
   useEffect(() => {
     async function fetchLoanDetails() {
@@ -27,7 +29,6 @@ function Loan() {
           }
         );
         const data = await response.json();
-        console.log(data);
 
         const ml = await fetch(`${import.meta.env.VITE_BACKEND_FLASK_BASE_API}/predict`, {
           method: "POST",
@@ -50,7 +51,6 @@ function Loan() {
         });
 
         const mlData = await ml.json();
-        console.log(mlData.predictions[0])
         setMlResponse(mlData);
         setLoan(data.loan);
         setAiResponse(data.aiResponse);
@@ -65,20 +65,31 @@ function Loan() {
 
   const handleAccept = async () => {
     if (!id) return;
-    await fetch(`${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/accept/${id}`, {
-      method: "POST",
-      credentials: "include",
-    });
-    nav(`/dashboard`, { replace: true });
+    setIsAccepting(true);
+    try {
+      await fetch(`${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/accept/${id}`, {
+        method: "POST",
+        credentials: "include",
+      });
+      toast("Sent contract via email!")
+      nav(`/dashboard`, { replace: true });
+    } finally {
+      setIsAccepting(false);
+    }
   };
 
   const handleReject = async () => {
     if (!id) return;
-    await fetch(`${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/reject/${id}`, {
-      method: "POST",
-      credentials: "include",
-    });
-    nav(`/dashboard`, { replace: true });
+    setIsRejecting(true);
+    try {
+      await fetch(`${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/loanOfficer/reject/${id}`, {
+        method: "POST",
+        credentials: "include",
+      });
+      nav(`/dashboard`, { replace: true });
+    } finally {
+      setIsRejecting(false);
+    }
   };
 
   const getStatusColor = (status) => {
@@ -300,23 +311,36 @@ function Loan() {
             {/* Action Buttons */}
             <div className="pt-6 border-t border-gray-200">
               <div className="flex space-x-4">
-                <button
-                  onClick={handleAccept}
-                  className="flex-1 bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
-                >
-                  Accept Loan
-                </button>
-                <button
-                  onClick={handleReject}
-                  className="flex-1 bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
-                >
-                  Reject Loan
-                </button>
+                <div className="flex-1 flex flex-col">
+                  <button
+                    onClick={handleAccept}
+                    disabled={isAccepting}
+                    className="w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors disabled:opacity-75 hover:cursor-pointer"
+                  >
+                    {isAccepting ? "Accepting..." : "Accept Loan"}
+                  </button>
+                  <span className="text-sm text-gray-600 mt-2 text-center opacity-60">
+                    Sends contract via mail for eSign request
+                  </span>
+                </div>
+                <div className="flex-1 flex flex-col">
+                  <button
+                    onClick={handleReject}
+                    disabled={isRejecting}
+                    className="w-full bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors disabled:opacity-75 hover:cursor-pointer"
+                  >
+                    {isRejecting ? "Rejecting..." : "Reject Loan"}
+                  </button>
+                  <span className="text-sm text-gray-600 mt-2 text-center opacity-60">
+                    Notifies on email regarding rejection
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </main>
+      <ToastContainer />
     </div>
   );
 }

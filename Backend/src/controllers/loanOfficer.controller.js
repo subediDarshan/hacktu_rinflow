@@ -28,7 +28,6 @@ const getAllLoans = async (req, res, next) => {
 
 const getLoanById = async (req, res) => {
   // genai
-  console.log("inside genai");
 
   try {
     if (req.user.role !== "loanOfficer") {
@@ -57,7 +56,6 @@ const getLoanById = async (req, res) => {
     };
 
     const aiResponse = await flow.analyzeRisk({ applicationData });
-    console.log({ loan, aiResponse });
 
     res.status(200).json({ loan, aiResponse });
   } catch (error) {
@@ -112,7 +110,6 @@ const rejectLoan = asyncHandler(async (req, res, next) => {
 // accept Loan
 
 const acceptLoan = asyncHandler(async (req, res, next) => {
-  console.log("checking");
 
   try {
     if (req.user.role !== "loanOfficer") {
@@ -124,7 +121,6 @@ const acceptLoan = asyncHandler(async (req, res, next) => {
 
     const { loanId } = req.params;
 
-    console.log("this is my loan id", loanId);
 
     const loan = await LoanApplication.findById(loanId);
     if (!loan) {

@@ -97,7 +97,6 @@ async function sendEnvelope({
     envelopeDefinition: envelopeDefinition,
   });
 
-  console.log("Envelope has been sent! Envelope ID: " + results.envelopeId);
   return results.envelopeId;
 }
 

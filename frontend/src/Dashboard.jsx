@@ -126,7 +126,7 @@ const Dashboard = () => {
           <div className="flex justify-end mt-4">
             <button
               onClick={() => handleReviewLoan(loan._id)}
-              className="relative bg-slate-900 text-white px-6 py-2 rounded-lg hover:bg-slate-800 transition"
+              className="relative bg-slate-900 text-white px-6 py-2 rounded-lg hover:bg-slate-800 transition hover:cursor-pointer"
             >
               Review Application
             </button>

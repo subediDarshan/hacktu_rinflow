@@ -83,7 +83,6 @@ function sendEnvelope(_a) {
         const results = yield envelopesApi.createEnvelope(docusignConfig.account_id, {
             envelopeDefinition: envelopeDefinition,
         });
-        console.log("Envelope has been sent! Envelope ID: " + results.envelopeId);
         return results.envelopeId;
     });
 }

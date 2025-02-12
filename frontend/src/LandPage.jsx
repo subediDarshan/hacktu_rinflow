@@ -31,7 +31,7 @@ const LandingPage = () => {
               </a>
               <button
                 onClick={() => nav("/signup")}
-                className="bg-slate-900 text-white px-4 py-2 rounded-lg hover:bg-slate-800 transition"
+                className="bg-slate-900 text-white px-4 py-2 rounded-lg hover:cursor-pointer"
               >
                 Get Started
               </button>
@@ -75,13 +75,13 @@ const LandingPage = () => {
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-pink-500 rounded-lg blur opacity-50 group-hover:opacity-75 transition"></div>
                 <button
                   onClick={() => nav("/signup")}
-                  className="relative bg-slate-900 text-white px-8 py-3 rounded-lg hover:bg-slate-800 transition"
+                  className="relative bg-slate-900 text-white px-8 py-3 rounded-lg hover:bg-slate-800 transition hover:cursor-pointer"
                 >
                   Start Free Trial
                 </button>
               </div>
               <a href="https://www.npmjs.com/package/rinflow" target="_blank">
-                <button className="px-8 py-3 border-2 border-slate-300 rounded-lg text-slate-600 hover:border-slate-400 hover:text-slate-900 transition">
+                <button className="px-8 py-3 border-2 border-slate-300 rounded-lg text-slate-600 hover:border-slate-400 hover:text-slate-900 transition hover:cursor-pointer">
                   Docs
                 </button>
               </a>
@@ -129,7 +129,8 @@ const LandingPage = () => {
                   </div>
                 </div>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/subediDarshan/hacktu_rinflow"
+                  target="_blank"
                   className="flex items-center text-slate-600 hover:text-slate-900 transition"
                 >
                   <svg

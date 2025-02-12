@@ -27,7 +27,6 @@ function sendMail(_a) {
         7014664028</p>
       `
             });
-            console.log('Email sent:', response);
         }
         catch (error) {
             console.error('Error sending email:', error);

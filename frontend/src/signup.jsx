@@ -13,7 +13,6 @@ const LoanApplication = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     setMessage("");
-    console.log(data);
 
     try {
       await axios.post(

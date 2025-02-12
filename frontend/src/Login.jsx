@@ -14,7 +14,6 @@ const Login = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     setMessage("");
-    console.log(data);
 
     try {
       await axios.post(`${import.meta.env.VITE_BACKEND_EXPRESS_BASE_API}/api/v1/login`, data, {

@@ -1,6 +1,6 @@
 {
   "name": "rinflow",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Rinflow, your LOS workflow automatic package",
   "main": "dist/index.js",
   "type": "module",

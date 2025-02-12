@@ -46,7 +46,7 @@ const LandingPage = () => {
           <div className="text-center space-y-8">
             <div className="inline-block">
               <span className="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-medium bg-pink-50 text-pink-700">
-                Just Released: v1.0.3
+                Just Released: v1.0.4
                 <svg
                   className="ml-1 h-4 w-4"
                   viewBox="0 0 24 24"

@@ -7,15 +7,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { Resend } from 'resend';
+import { Resend } from "resend";
 function sendMail(_a) {
     return __awaiter(this, arguments, void 0, function* ({ loanId, email, username, resendConfig }) {
         const resend = new Resend(resendConfig.resendApi);
         try {
             const response = yield resend.emails.send({
-                from: 'onboarding@resend.dev',
+                from: "onboarding@resend.dev",
                 to: email,
-                subject: 'Application Update',
+                subject: "Application Update",
                 html: `
         <p>Dear ${username},</p>
         <p>Thank you for your application for loan with Loan Id : ${loanId}. After a thorough review, we regret to inform you that we are unable to proceed with your request at this time.</p>
@@ -25,11 +25,11 @@ function sendMail(_a) {
         Priyansh Chowhan<br/>
         Rinflow<br/>
         7014664028</p>
-      `
+      `,
             });
         }
         catch (error) {
-            console.error('Error sending email:', error);
+            console.error("Error sending email:", error);
         }
     });
 }
